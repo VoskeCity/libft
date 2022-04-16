@@ -6,7 +6,7 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 22:28:56 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/09 16:24:27 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/15 17:44:00 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	k;
 	size_t	j;
 
+	if (!s1)
+		return (0);
 	j = 0;
 	k = ft_strlen(s1);
 	ptr = (char *)malloc(k + 1);

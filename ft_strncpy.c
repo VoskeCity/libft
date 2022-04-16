@@ -6,7 +6,7 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 15:34:43 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/03/26 16:59:45 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/14 20:19:25 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ char	*ft_strncpy(char *dst, const char *src, size_t len)
 		dst[i] = src[i];
 		i++;
 	}
-	dst[i] = '\0';
+	while (i < len)
+		dst[i++] = '\0';
 	return (dst);
 }

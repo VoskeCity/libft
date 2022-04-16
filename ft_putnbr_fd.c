@@ -6,7 +6,7 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:04:53 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/10 17:22:53 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/15 17:31:54 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ void	ft_putnbr_fd(int n, int fd)
 {
 	char	*c;
 
-	c = ft_itoa(n);
-	printf(" %s ", c);
-	write (1, &c, sizeof(n));
-	write (fd, &c, sizeof(n));
+	if (n == -2147483648)
+	{
+		ft_putstr_fd("-2147483648", fd);
+		return;
+	}
+		c = ft_itoa(n);
+	ft_putstr_fd(c, fd);
 }
