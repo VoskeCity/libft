@@ -6,7 +6,7 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 17:23:04 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/09 20:30:47 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/20 15:33:56 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static	char	*ft_getnext(char *s, char c);
 static	size_t	ft_getrows(const char *s, char c);
-static	size_t	ft_rowlen(char *s, char c);
+//static	size_t	ft_rowlen(char *s, char c);
 
 char	**ft_split(char const *s, char c)
 {
@@ -27,18 +27,19 @@ char	**ft_split(char const *s, char c)
 	j = 0;
 	k = 0;
 	i = ft_getrows(s, c);
-	mat = (char **)malloc(ft_strlen(s) + 1);
-	if (!mat)
+	mat = (char **)malloc(sizeof(char *) * i);
+	if (!mat || !s)
 		return (0);
 	ptr = (char *)s;
 	while (*ptr)
 	{
 		if (*ptr == c)
 			ptr = ft_getnext(ptr, c);
-		mat[j] = (char *)malloc(ft_rowlen(ptr, c) + 1);
+		mat[j] = (char *)malloc(sizeof(char *));
 		while (*ptr && *ptr != c)
-			mat[j][k++] = *ptr++;
+			mat[j][k++] = *(ptr++);
 		mat[j][k] = '\0';
+		printf("%s\n", mat[j]);
 		k = 0;
 		j++;
 	}
@@ -55,26 +56,29 @@ static	size_t	ft_getrows(const char *s, char c)
 	k = 1;
 	while (*ptr)
 	{
-		if (*ptr == c)
-			if (ptr != ft_getnext(ptr, c))
-			{
+		if (*ptr == c && ptr != ft_getnext(ptr, c))
+		{
 			ptr = ft_getnext(ptr, c);
 			k++;
-			}
+		}
 		ptr++;
 	}
+	if (*s == c)
+		k = k - 1;
 	return (k);
 }
 
-static	size_t	ft_rowlen(char *s, char c)
-{
-	size_t	k;
-
-	k = 0;
-	while (s[k] && s[k++] != c)
-		;
-	return (k);
-}
+//static	size_t	ft_rowlen(char *s, char c)
+//{
+//	size_t	k;
+//
+//	k = 0;
+//	while (s[k] && s[k++] != c)
+//		;
+//	if (k)
+//		return (k - 1);
+//	return(k);
+//}
 
 static	char	*ft_getnext(char *s, char c)
 {
@@ -83,7 +87,5 @@ static	char	*ft_getnext(char *s, char c)
 	i = 0;
 	while (s[i] == c)
 		i++;
-	if (s + i != '\0')
-		return (s + i);
-	return (s);
+	return (s + i);
 }
