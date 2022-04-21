@@ -6,7 +6,7 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 17:54:49 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/05 20:34:55 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/21 20:10:22 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	ft_atoi(const char *s)
 	val = 0;
 	i = 0;
 	k = 0;
-	while (s[i] == '\t' || s[i] == '\r' ||s[i] == ' ' || s[i] == '\v' 
-			|| s[i] == '-' || s[i] == '+' || s[i] == '\f' || s[i] == '\n')
+	while (s[i] == '\t' || s[i] == '\r' || s[i] == ' ' || s[i] == '\v'
+		|| s[i] == '-' || s[i] == '+' || s[i] == '\f' || s[i] == '\n')
 	{
 		if (s[i] == ' ')
 			k++;
@@ -34,10 +34,10 @@ int	ft_atoi(const char *s)
 		k = -1;
 	while (ft_isdigit(s[i]))
 	{	
-		val  = (val * 10) + s[i] - '0';
+		val = (val * 10) + s[i] - '0';
 		if (val > INT_MAX && k != -1)
 			return (-1);
-		if (k == -1 && -val < INT_MIN )
+		if (k == -1 && - val < INT_MIN)
 			return (0);
 		i++;
 	}

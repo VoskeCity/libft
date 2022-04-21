@@ -6,7 +6,7 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:51:36 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/15 17:07:44 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/21 20:01:40 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_putstr_fd(char *s, int fd)
 {
 	if (!s)
-		return;
+		return ;
 	while (*s)
 		ft_putchar_fd(*s++, fd);
 }

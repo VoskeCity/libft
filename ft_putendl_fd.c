@@ -6,7 +6,7 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:58:40 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/15 17:11:14 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/21 20:02:45 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_putendl_fd(char *s, int fd)
 {
 	if (!s)
-		return;
+		return ;
 	ft_putstr_fd(s, fd);
 	write (fd, "\n", 1);
 }

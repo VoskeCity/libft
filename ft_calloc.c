@@ -6,7 +6,7 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:58:24 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/05 20:37:43 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/21 20:07:43 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	*ft_calloc(size_t count, size_t size)
 	size_t	i;
 
 	i = 0;
-	if (!(ptr = (int *)malloc(count * size)))
+	ptr = (int *)malloc(count * size);
+	if (!ptr)
 		return (0);
 	while (i < count)
 		ptr[i++] = 0;

@@ -6,7 +6,7 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 19:42:54 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/01 19:51:43 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/21 20:06:10 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
+	new->next = *lst;
 	*lst = new;
 }

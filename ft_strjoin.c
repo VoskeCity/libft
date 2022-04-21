@@ -6,7 +6,7 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 17:42:03 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/15 17:33:23 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/21 19:52:47 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (0);
 	i = ft_strlen(s1);
 	j = ft_strlen(s2);
-	if (!(ptr = (char *)malloc(sizeof(*ptr) * (i + j + 1))))
+	ptr = (char *)malloc(sizeof(*ptr) * (i + j + 1));
+	if (!ptr)
 		return (0);
 	ft_strlcpy(ptr, s1, i + 1);
 	ft_strlcat(ptr, s2, i + j + 1);

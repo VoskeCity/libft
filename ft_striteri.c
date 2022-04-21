@@ -6,7 +6,7 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:48:59 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/15 17:03:20 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/21 19:54:20 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 	unsigned int	j;
 
 	if (!s)
-		return;
+		return ;
 	i = ft_strlen(s);
 	j = -1;
 	while (++j < i)
