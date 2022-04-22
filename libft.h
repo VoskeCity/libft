@@ -6,7 +6,7 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 19:32:52 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/08 20:41:16 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/22 12:46:59 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,11 @@ size_t	ft_strlcpy(char *restrict dst, const char *restrict src, \
 int		ft_isalpha(int x);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
-int		ft_abs(int a, int b);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int x);
 int		ft_isalnum(int x);
 int		ft_isascii(int c);
-int		ft_islower(int x);
 int		ft_isprint(int c);
-int		ft_isupper(int x);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strlen(const char *str);
 int		ft_strncmp(const char *t1, const char *t2, size_t n);

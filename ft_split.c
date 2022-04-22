@@ -6,7 +6,7 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 17:23:04 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/21 20:00:05 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/22 15:21:15 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,25 @@ char	**ft_split(char const *s, char c)
 {
 	char	**mat;
 	char	*ptr;
-	size_t	i;
 	size_t	j;
 	size_t	k;
 
 	j = 0;
 	k = 0;
 	ptr = (char *)s;
-	i = ft_getrows(ptr, c);
-	mat = (char **)malloc((sizeof(char *) * i) + 1);
-	if (!mat || !s)
+	mat = (char **)malloc((sizeof(char *) * ft_getrows(ptr, c)) + 1);
+	if (!s || !mat)
 		return (0);
 	while (*ptr)
 	{
-		if (*ptr == c)
-			ptr = ft_getnext(ptr, c);
+		ptr = ft_getnext(ptr, c);
 		mat[j] = (char *)malloc(ft_rowlen(ptr, c) + 1);
 		if (*ptr)
 		{
 			while (*ptr && *ptr != c)
 				mat[j][k++] = *(ptr++);
-			mat[j][k] = '\0';
+			mat[j++][k] = '\0';
 			k = 0;
-			j++;
 		}
 	}
 	mat[j] = 0;
@@ -54,6 +50,8 @@ static	char	*ft_getnext(char *s, char c)
 	size_t	i;
 
 	i = 0;
+	if (*s != c)
+		return (s);
 	while (s[i] == c)
 		i++;
 	return (s + i);

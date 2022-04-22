@@ -6,11 +6,19 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 19:24:09 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/03 15:39:42 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/22 11:28:07 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static int	ft_abs(int a, int b)
+{
+	if (a > b)
+		return (a - b);
+	else
+		return (b - a);
+}
 
 void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {

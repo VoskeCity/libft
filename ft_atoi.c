@@ -6,11 +6,25 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 17:54:49 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/21 20:10:22 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/22 16:32:33 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static int	ft_sign(int k)
+{
+	if (k >= 0)
+		return (1);
+	else
+		return (-1);
+}
+
+static void	ft_checkminus(int *k, char c)
+{
+	if (c == '-')
+		*k = -1;
+}
 
 int	ft_atoi(const char *s)
 {
@@ -26,22 +40,17 @@ int	ft_atoi(const char *s)
 	{
 		if (s[i] == ' ')
 			k++;
-		if ((s[i] == '+' && !ft_isdigit(s[i + 1])) || k > 1)
+		if ((s[i++] == '+' && !ft_isdigit(s[i])) || k > 1)
 			return (0);
-		i++;
 	}
-	if (s[i - 1] == '-')
-		k = -1;
+	ft_checkminus(&k, s[i - 1]);
 	while (ft_isdigit(s[i]))
 	{	
-		val = (val * 10) + s[i] - '0';
+		val = (val * 10) + s[i++] - '0';
 		if (val > INT_MAX && k != -1)
 			return (-1);
 		if (k == -1 && - val < INT_MIN)
 			return (0);
-		i++;
 	}
-	if (k == -1)
-		return (-val);
-	return (val);
+	return (val * ft_sign(k));
 }
