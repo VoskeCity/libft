@@ -6,7 +6,7 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 19:24:09 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/22 11:28:07 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/22 17:18:14 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	ft_abs(int a, int b)
 		return (b - a);
 }
 
-void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	char	*dsts;
 	char	*srcs;

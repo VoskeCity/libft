@@ -6,11 +6,26 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 19:44:33 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/21 19:51:41 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/22 18:03:57 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static char	*ft_strncpy(char *dst, const char *src, size_t len)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < len && src[i] != '\0')
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	while (i < len)
+		dst[i++] = '\0';
+	return (dst);
+}
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

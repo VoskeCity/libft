@@ -6,7 +6,7 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 19:32:52 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/22 12:46:59 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/22 18:04:56 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,13 @@ char	*ft_strdup(const char *s1);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strtrim(char const *s1, char const *set);
-char	*ft_strncpy(char *dst, const char *src, size_t len);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	*ft_memset(void *s, int c, int n);
 void	*ft_memchr(const void *s, int c, size_t n);
-void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
-void	*calloc(size_t count, size_t size);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+void	*ft_calloc(size_t count, size_t size);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	ft_bzero(void *s, int n);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
@@ -53,9 +52,9 @@ void	ft_lstadd_back(t_list **lst, t_list *ne);
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
-size_t	ft_strlcat(char *restrict dst, const char *restrict src, \
+size_t	ft_strlcat(char *dst, const char *src, \
 		size_t dstsize);
-size_t	ft_strlcpy(char *restrict dst, const char *restrict src, \
+size_t	ft_strlcpy(char *dst, const char *src, \
 		size_t dstsize);
 int		ft_isalpha(int x);
 int		ft_tolower(int c);
@@ -64,9 +63,9 @@ int		ft_atoi(const char *str);
 int		ft_isdigit(int x);
 int		ft_isalnum(int x);
 int		ft_isascii(int c);
+int		ft_strlen(const char *str);
 int		ft_isprint(int c);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
-int		ft_strlen(const char *str);
 int		ft_strncmp(const char *t1, const char *t2, size_t n);
 int		ft_lstsize(t_list *lst);
 #endif

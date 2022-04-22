@@ -6,13 +6,12 @@
 #    By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 11:19:42 by aeloyan           #+#    #+#              #
-#    Updated: 2022/04/22 12:46:56 by aeloyan          ###   ########.fr        #
+#    Updated: 2022/04/22 18:12:38 by aeloyan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 SRCS = ft_isalpha.c \
-	   ft_strncpy.c\
 	   ft_isdigit.c \
 	   ft_isalnum.c \
 	   ft_isascii.c \

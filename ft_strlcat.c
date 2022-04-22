@@ -6,13 +6,13 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 18:24:22 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/03/30 17:20:07 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/22 17:55:42 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	lendst;
 
