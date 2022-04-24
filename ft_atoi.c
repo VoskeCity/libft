@@ -6,7 +6,7 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 17:54:49 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/22 16:32:33 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/24 14:27:26 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void	ft_checkminus(int *k, char c)
 {
 	if (c == '-')
 		*k = -1;
+	else
+		*k = 1;
 }
 
 int	ft_atoi(const char *s)
@@ -34,15 +36,10 @@ int	ft_atoi(const char *s)
 
 	val = 0;
 	i = 0;
-	k = 0;
 	while (s[i] == '\t' || s[i] == '\r' || s[i] == ' ' || s[i] == '\v'
 		|| s[i] == '-' || s[i] == '+' || s[i] == '\f' || s[i] == '\n')
-	{
-		if (s[i] == ' ')
-			k++;
-		if ((s[i++] == '+' && !ft_isdigit(s[i])) || k > 1)
+		if (((s[i] == '+' || s[i++] == '-') && !ft_isdigit(s[i])))
 			return (0);
-	}
 	ft_checkminus(&k, s[i - 1]);
 	while (ft_isdigit(s[i]))
 	{	

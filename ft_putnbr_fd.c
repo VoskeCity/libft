@@ -6,7 +6,7 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:04:53 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/21 20:02:24 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/23 12:29:24 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	char	*c;
-
 	if (n == -2147483648)
 	{
 		ft_putstr_fd("-2147483648", fd);
 		return ;
 	}
-		c = ft_itoa(n);
-	ft_putstr_fd(c, fd);
+	ft_putstr_fd(ft_itoa(n), fd);
 }

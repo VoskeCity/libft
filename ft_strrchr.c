@@ -6,7 +6,7 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:36:55 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/22 17:55:55 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/23 13:20:55 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strrchr(const char *s, int c)
 	i = ft_strlen(s);
 	while (i >= 0)
 	{
-		if (s[i] == c)
+		if (s[i] == c % 256)
 			return ((char *)(s + i));
 		i--;
 	}
