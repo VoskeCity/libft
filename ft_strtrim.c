@@ -6,18 +6,18 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 22:28:56 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/22 17:57:38 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/28 19:09:25 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_rm(char *ptr, const char *set);
+static int		ft_rmmatch(char *ptr, const char *set);
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*ptr;
-	char	*prt;
+	char	*copy_string;
+	char	*return_string;
 	size_t	k;
 	size_t	j;
 
@@ -25,22 +25,24 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (0);
 	j = 0;
 	k = ft_strlen(s1);
-	ptr = (char *)malloc(k + 1);
-	if (!ptr)
+	copy_string = (char *)malloc(k + 1);
+	if (!copy_string)
 		return (0);
-	ft_strlcpy(ptr, s1, k + 1);
-	while (ft_rm(ptr, set))
+	ft_strlcpy(copy_string, s1, k + 1);
+	while (ft_rmmatch(copy_string, set))
 		;
-	while (ft_rm(ptr + ft_strlen(ptr) - 1, set))
-		;
-	prt = (char *)malloc(ft_strlen(ptr) + 1);
-	if (prt == 0)
+	if (ft_strlen(copy_string))
+		while (ft_rmmatch(copy_string + ft_strlen(copy_string) - 1, set))
+			;
+	return_string = (char *)malloc(ft_strlen(copy_string) + 1);
+	if (!return_string)
 		return (0);
-	ft_strlcpy(prt, ptr, ft_strlen(ptr) + 1);
-	return (prt);
+	ft_strlcpy(return_string, copy_string, ft_strlen(copy_string) + 1);
+	free(copy_string);
+	return (return_string);
 }
 
-int	ft_rm(char *ptr, const char *set)
+static int	ft_rmmatch(char *ptr, const char *set)
 {
 	int	j;
 

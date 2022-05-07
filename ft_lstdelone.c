@@ -6,7 +6,7 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 14:11:51 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/02 14:36:52 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/28 19:13:46 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,5 @@
 void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
 	(*del)(lst->content);
+	free(lst);
 }

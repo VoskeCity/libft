@@ -6,18 +6,31 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:04:53 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/23 12:29:24 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/25 16:43:12 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int k, int fd)
 {
-	if (n == -2147483648)
+	char	c;
+	long	n;
+
+	n = (long)k;
+	if (n < 0)
 	{
-		ft_putstr_fd("-2147483648", fd);
+		n = -n;
+		write(fd, "-", 1);
+	}
+	if (n >= 0 && n <= 9)
+	{
+		c = n + '0';
+		write(fd, &c, 1);
 		return ;
 	}
-	ft_putstr_fd(ft_itoa(n), fd);
+	ft_putnbr_fd(n / 10, fd);
+	c = n % 10 + '0';
+	write(fd, &c, 1);
+	return ;
 }

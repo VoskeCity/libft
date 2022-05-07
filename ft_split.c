@@ -5,86 +5,77 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/26 17:23:04 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/22 15:21:15 by aeloyan          ###   ########.fr       */
+/*   Created: 2022/04/30 19:06:10 by aeloyan           #+#    #+#             */
+/*   Updated: 2022/05/07 13:58:18 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		*ft_getnext(char *s, char c);
-static size_t	ft_getrows(char *s, char c);
-static size_t	ft_rowlen(char *s, char c);
+static char	*getnext(char *ptrge, char chge);
+static int	wordlen(char *ptrw, char chw);
+static int	getrows(char *ptrg, char chg);
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(const char *str, char ch)
 {
 	char	**mat;
 	char	*ptr;
-	size_t	j;
-	size_t	k;
+	int		j;
 
 	j = 0;
-	k = 0;
-	ptr = (char *)s;
-	mat = (char **)malloc((sizeof(char *) * ft_getrows(ptr, c)) + 1);
-	if (!s || !mat)
+	if (!str)
+		return (0);
+	ptr = ft_strtrim(str, &ch);
+	if (!ptr)
+		return (0);
+	mat = (char **)malloc(sizeof(char *) * (getrows(ptr, ch) + 1));
+	if (!mat)
 		return (0);
 	while (*ptr)
 	{
-		ptr = ft_getnext(ptr, c);
-		mat[j] = (char *)malloc(ft_rowlen(ptr, c) + 1);
-		if (*ptr)
+		mat[j] = ft_substr(ptr, 0, wordlen(ptr, ch));
+		if (!mat[j])
 		{
-			while (*ptr && *ptr != c)
-				mat[j][k++] = *(ptr++);
-			mat[j++][k] = '\0';
-			k = 0;
+			while (j)
+				free(mat[--j]);
+			free(mat);
+			return (0);
 		}
+		j++;
+		ptr = getnext(ptr, ch);
 	}
-	mat[j] = 0;
+	mat[j] = NULL;
 	return (mat);
 }
 
-static	char	*ft_getnext(char *s, char c)
+static char	*getnext(char *ptrge, char chge)
 {
-	size_t	i;
+	while (*ptrge && *ptrge != chge)
+		ptrge++;
+	while (*ptrge && *ptrge == chge)
+		ptrge++;
+	return (ptrge);
+}
+
+static int	wordlen(char *ptrw, char chw)
+{
+	int	i;
 
 	i = 0;
-	if (*s != c)
-		return (s);
-	while (s[i] == c)
+	while (ptrw[i] && ptrw[i] != chw)
 		i++;
-	return (s + i);
+	return (i);
 }
 
-static	size_t	ft_getrows(char *ptr, char c)
+static int	getrows(char *ptrg, char chg)
 {
-	size_t	k;
+	int	i;
 
-	k = 1;
-	if (*ptr == c)
-		k = k - 1;
-	while (*ptr)
+	i = 0;
+	while (*ptrg)
 	{
-		if (*ptr == c)
-		{
-			ptr = ft_getnext(ptr, c);
-			if (*ptr)
-				k++;
-		}
-		ptr++;
+		ptrg = getnext(ptrg, chg);
+		i++;
 	}
-	return (k);
-}
-
-static	size_t	ft_rowlen(char *s, char c)
-{
-	size_t	k;
-
-	k = 0;
-	while (s[k] && s[k++] != c)
-		;
-	if (k)
-		return (k - 1);
-	return (k);
+	return (i);
 }

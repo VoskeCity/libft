@@ -6,27 +6,11 @@
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 17:54:49 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/04/24 14:27:26 by aeloyan          ###   ########.fr       */
+/*   Updated: 2022/04/26 13:08:23 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static int	ft_sign(int k)
-{
-	if (k >= 0)
-		return (1);
-	else
-		return (-1);
-}
-
-static void	ft_checkminus(int *k, char c)
-{
-	if (c == '-')
-		*k = -1;
-	else
-		*k = 1;
-}
 
 int	ft_atoi(const char *s)
 {
@@ -36,18 +20,22 @@ int	ft_atoi(const char *s)
 
 	val = 0;
 	i = 0;
+	k = 1;
 	while (s[i] == '\t' || s[i] == '\r' || s[i] == ' ' || s[i] == '\v'
-		|| s[i] == '-' || s[i] == '+' || s[i] == '\f' || s[i] == '\n')
-		if (((s[i] == '+' || s[i++] == '-') && !ft_isdigit(s[i])))
+		|| s[i] == '\f' || s[i] == '\n' || s[i] == '-' || s[i] == '+')
+		if ((s[i++] == '+' || s[i - 1] == '-') && !ft_isdigit(s[i]))
 			return (0);
-	ft_checkminus(&k, s[i - 1]);
+	if (!ft_isdigit(s[i]))
+		return (0);
+	if (i != 0 && s[i - 1] == '-')
+		k = -1;
 	while (ft_isdigit(s[i]))
-	{	
+	{
 		val = (val * 10) + s[i++] - '0';
-		if (val > INT_MAX && k != -1)
+		if (val > INT_MAX && k == 1)
 			return (-1);
-		if (k == -1 && - val < INT_MIN)
+		if (INT_MIN > -val)
 			return (0);
 	}
-	return (val * ft_sign(k));
+	return (val * k);
 }
