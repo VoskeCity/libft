@@ -5,77 +5,89 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeloyan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/30 19:06:10 by aeloyan           #+#    #+#             */
-/*   Updated: 2022/05/07 13:58:18 by aeloyan          ###   ########.fr       */
+/*   Created: 2022/05/08 12:55:46 by aeloyan           #+#    #+#             */
+/*   Updated: 2022/05/08 16:56:34 by aeloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*getnext(char *ptrge, char chge);
-static int	wordlen(char *ptrw, char chw);
-static int	getrows(char *ptrg, char chg);
+static void	clean(char **mat, int i);
+static int	rows(char *s, char c);
+static char	**init(char **mat, char *s, char c);
 
-char	**ft_split(const char *str, char ch)
+char	**ft_split(char const *s, char c)
 {
 	char	**mat;
-	char	*ptr;
-	int		j;
 
-	j = 0;
-	if (!str)
+	if (!s)
 		return (0);
-	ptr = ft_strtrim(str, &ch);
-	if (!ptr)
-		return (0);
-	mat = (char **)malloc(sizeof(char *) * (getrows(ptr, ch) + 1));
+	mat = (char **)malloc(sizeof(char *) * (rows((char *)s, c) + 1));
 	if (!mat)
 		return (0);
-	while (*ptr)
-	{
-		mat[j] = ft_substr(ptr, 0, wordlen(ptr, ch));
-		if (!mat[j])
-		{
-			while (j)
-				free(mat[--j]);
-			free(mat);
-			return (0);
-		}
-		j++;
-		ptr = getnext(ptr, ch);
-	}
-	mat[j] = NULL;
+	mat = init(mat, (char *)s, c);
+	if (!mat)
+		return (0);
 	return (mat);
 }
 
-static char	*getnext(char *ptrge, char chge)
-{
-	while (*ptrge && *ptrge != chge)
-		ptrge++;
-	while (*ptrge && *ptrge == chge)
-		ptrge++;
-	return (ptrge);
-}
-
-static int	wordlen(char *ptrw, char chw)
+static char	**init(char **mat, char *s, char c)
 {
 	int	i;
+	int	p_start;
+	int	p_end;
+	int	j;
 
+	j = 0;
 	i = 0;
-	while (ptrw[i] && ptrw[i] != chw)
-		i++;
-	return (i);
-}
-
-static int	getrows(char *ptrg, char chg)
-{
-	int	i;
-
-	i = 0;
-	while (*ptrg)
+	p_start = 0;
+	p_end = 0;
+	while (s[i])
 	{
-		ptrg = getnext(ptrg, chg);
-		i++;
+		while (s[i] == c)
+			p_start = ++i;
+		while (s[i] != c && s[i])
+			p_end = ++i;
+		if (p_start < p_end)
+			mat[j] = ft_substr(s, p_start, p_end - p_start);
+		if (p_start < p_end && !mat[j++])
+		{
+			clean(mat, j);
+			return (0);
+		}
 	}
-	return (i);
+	mat[j] = 0;
+	return (mat);
+}
+
+static void	clean(char **mat, int j)
+{
+	while (j-- > 1)
+		free(mat[j - 1]);
+	free(mat);
+	return ;
+}
+
+static int	rows(char *s, char c)
+{
+	int	i;
+	int	k;
+	int	d;
+
+	i = 0;
+	k = 0;
+	while (s[i] && c)
+	{
+		d = 0;
+		while (s[i] == c)
+			++i;
+		while (s[i] != c && s[i])
+		{
+			i++;
+			d++;
+		}
+		if (d)
+			k++;
+	}
+	return (k);
 }
